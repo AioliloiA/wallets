@@ -1,0 +1,38 @@
+<p>
+  template works:
+  {{data}}
+</p>
+<p [style.color]="favColor">
+  Concatenate string: {{data + 'More text'}}
+</p>
+
+<p [textContent]="data">
+
+</p>
+<p>
+  {{data}}
+</p>
+=========== Make some col loops
+<ul>
+  <li *ngFor="let coin of coins">
+    {{coin.symbol}}=>{{coin.price}}
+  </li>
+</ul>
+
+============== Tableau Joli
+<div>
+  <!-- name, symbol, price -->
+  <table border="coucou">
+    <th>name</th>
+    <th>symbol</th>
+    <th>row</th>
+    <th>tendance</th>
+    <tr *ngFor="let coin of coins" >
+      <td>{{coin.name}}</td>
+      <td>{{coin.symbol}}</td>
+      <td>{{coin.price}}</td>
+      <td>{{coin.up}}</td>
+    </tr>
+
+  </table>
+</div>

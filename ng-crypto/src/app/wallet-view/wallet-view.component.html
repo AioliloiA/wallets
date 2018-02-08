@@ -1,0 +1,31 @@
+<p>
+
+  <input type="number" #amount>
+  <button (click)=deposit(amount.value)>Get rich</button>
+
+</p>
+<ul>
+  <li *ngFor = "let line of wallet.lines"  [style.color]= "getColor(line.symbol)">
+   Monnaie /quantité / Valeur du marché :  {{line.symbol}} /// {{line.quantity}} ///
+
+
+  </li>
+</ul>
+<p> La somme de totale de ma thune: =>{{wallet.totalDollarValue()}}</p>
+
+
+==== Other cryptos
+
+<p>
+  Symbol: <input  #symbol>
+
+  Quantity : <input type="number" #quantity>
+
+  <button (click)="buy(symbol.value,quantity.value)">Buy</button>
+
+  <button (click)="sell(quantity.value,symbol.value)">Sell</button>
+
+  <button (click)="update()">Update</button>
+
+
+</p>
