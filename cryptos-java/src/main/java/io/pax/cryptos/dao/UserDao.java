@@ -1,12 +1,8 @@
 package io.pax.cryptos.dao;
 
-import io.pax.cryptos.domain.SimpleUser;
-import io.pax.cryptos.domain.User;
+import io.pax.cryptos.domain.*;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +11,36 @@ import java.util.List;
  */
 public class UserDao{
 
+    public User findUserWithWallets(int userId) throws SQLException {
+        Connection connection = connector.getConnection();
+        String query ="SELECT * FROM wallet w RIGHT JOIN user u ON w.user_id=u.id WHERE u.id = ?";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setInt(1,userId);
+        ResultSet resultSet = statement.executeQuery();
 
+        User user = null;
+        List<Wallet> wallets = new ArrayList<>();
+        while (resultSet.next()){
+            String username = resultSet.getString("u.name");
+
+            user = new FullUser(userId,username,wallets);
+
+            int walletId = resultSet.getInt("w.id");
+            String walletName = resultSet.getString("w.name");
+
+            if (walletId > 0){
+                Wallet wallet = new SimpleWallet(walletId, walletName);
+                wallets.add(wallet);
+            }
+
+        }
+
+        resultSet.close();
+        statement.close();
+        connection.close();
+
+        return user;
+    }
 
     JdbcConnector connector = new JdbcConnector();
 
@@ -82,4 +107,13 @@ public class UserDao{
     }
 
     */
+
+    public static void main(String[] args) throws SQLException {
+
+        UserDao dao = new UserDao();
+
+
+        System.out.println(dao.findUserWithWallets(2));
+
+    }
 }

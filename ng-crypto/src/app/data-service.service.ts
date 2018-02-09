@@ -15,4 +15,16 @@ export class DataService {
 
   }
 
+  fetchUsersWithWallets(user: User): Promise<User>{
+
+    let url = 'http://localhost:8080/cryptos/api/users/'+user.id;
+    return this.http
+      .get(url)
+      .toPromise()
+      .then(data => {
+        console.log('user with wallet : ', data);
+        return data as User
+      })
+  }
+
 }

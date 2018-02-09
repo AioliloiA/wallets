@@ -172,7 +172,7 @@ public class WalletDao {
     //System.out.println(dao.findByName("erase"));
     //dao.deleteByName("Nice");
     //dao.updateWallet(15,"Marron");
-    dao.deleteAll(2);
+
     System.out.println(dao.listWallets());
 /*
     System.out.println(id);

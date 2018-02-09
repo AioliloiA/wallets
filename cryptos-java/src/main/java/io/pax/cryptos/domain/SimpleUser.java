@@ -18,17 +18,22 @@ public class SimpleUser implements User {
 
     @Override
     public int getId() {
-        return 0;
+        return this.id;
     }
 
     @Override
     public String getName() {
-        return null;
+        return this.name;
     }
 
     @Override
     public List<Wallet> getWallets() {
         return null;
+    }
+
+    @Override
+    public String toString() {
+        return this.name;
     }
 }
 
