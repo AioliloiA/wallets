@@ -5,9 +5,14 @@ import java.util.List;
 /**
  * Created by AELION on 09/02/2018.
  */
-public class FullUser extends SimpleUser{
+public class FullUser extends SimpleUser {
 
     List<Wallet> wallets;
+    public FullUser(){
+        super();
+    }
+
+
 
     public FullUser(int id, String name, List<Wallet> wallets) {
         super(id, name);
@@ -23,4 +28,12 @@ public class FullUser extends SimpleUser{
     public List<Wallet> getWallets() {
         return this.wallets;
     }
-}
+
+    public void setWallets(List<Wallet> wallets) {
+        this.wallets = wallets;
+
+
+        }
+    }
+
+

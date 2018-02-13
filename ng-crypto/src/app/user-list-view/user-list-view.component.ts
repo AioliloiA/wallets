@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {DataService} from "../data-service.service";
 import {User} from "../model/user";
+import {Wallet} from "../model/wallet";
 
 @Component({
   selector: 'app-user-list-view',
@@ -12,6 +13,8 @@ export class UserListViewComponent implements OnInit {
 
   users: User[];
   selectedUser: User;
+  createdWallet:Wallet= new Wallet();
+  createdUser: User = new User();
 
   constructor(public dataService:DataService) {
     dataService.fetchUsers()
@@ -24,6 +27,9 @@ export class UserListViewComponent implements OnInit {
 
   details (user: User){
     this.selectedUser = user;
+    this.createdWallet.user = user;
+    this.createdWallet.name = user.name + "'s wallet"
+
     console.log('You selected', user);
   this.dataService
     .fetchUsersWithWallets(user)
@@ -31,4 +37,16 @@ export class UserListViewComponent implements OnInit {
     .then(console.log);
   }
 
+  createWallet(){
+    this.dataService.createWallet(this.createdWallet)
+    .then (() => this.selectedUser.wallets.push(Object.assign({},this.createdWallet)))
+      .catch(e => alert(e));
+  }
+
+
+  createUser(){
+    this.dataService.createUser(this.createdUser)
+      .then (() => this.users.push(Object.assign({},this.createdUser)))
+      .catch(e=> alert(e))
+  }
 }

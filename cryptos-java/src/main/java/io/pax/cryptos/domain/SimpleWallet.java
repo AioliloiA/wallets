@@ -8,6 +8,9 @@ public class SimpleWallet implements Wallet {
   int id;
   String name;
 
+  public SimpleWallet(){
+
+  }
   public SimpleWallet(int id, String name) {
     this.id = id;
     this.name = name;

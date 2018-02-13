@@ -65,18 +65,34 @@ public class UserDao{
 
     }
 
-    /*
 
     public int createUser(String name) throws SQLException {
-
+        String query = "INSERT INTO user (name) VALUES(?)";
+        System.out.println(query);
+        Connection conn = this.connector.getConnection();
+        PreparedStatement stmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+        stmt.setString(1,name);
+        stmt.executeUpdate();
+        /*int rows = stmt.executeUpdate(query);
+        if( rows != 1){
+            throw new SQLException("Something wrong happened with :" + query);
+        }*/
+        ResultSet keys = stmt.getGeneratedKeys();
+        keys.next();
+        int id = keys.getInt(1);
+        stmt.close();
+        conn.close();
+        return  id;
     }
 
     public void deleteUser(int userId) throws SQLException{
+
 
     }
 
     public List<User> findByName(String extract){
 
+        return null;
     }
 
     public void deleteByName(String exactName){
@@ -87,33 +103,30 @@ public class UserDao{
 
     }
 
-    public void deleteUser(int userId){
-      // delete wallets, then delete User
-    }
 
-    @Override
+
+
     public int getId() {
         return 0;
     }
 
-    @Override
+
     public String getName() {
         return null;
     }
 
-    @Override
+
     public List<Wallet> getWallets() {
         return null;
     }
 
-    */
 
     public static void main(String[] args) throws SQLException {
 
         UserDao dao = new UserDao();
 
-
-        System.out.println(dao.findUserWithWallets(2));
+        System.out.println(dao.createUser("Hello"));
+        //System.out.println(dao.findUserWithWallets(2));
 
     }
 }

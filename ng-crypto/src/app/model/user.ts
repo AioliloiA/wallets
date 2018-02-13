@@ -8,4 +8,6 @@ export class User{
   name: string;
 
   wallets: Wallet[] = []
+
+
 }

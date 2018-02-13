@@ -13,5 +13,20 @@
        wallet:  {{wallet.name}}
     </li>
   </ul>
+  <h3>Create new Wallet</h3>
+  <form>
+    <input name="walletName"
+           #elt [(ngModel)]="createdWallet.name" (click)="createdWallet.name = ''"> {{elt.value}}
+
+    <button (click)="createWallet()" [disabled] = "createdWallet.name.length  <2"> Create new Wallet</button>
+  </form>
 </h2>
+
+  <h3>Create new User</h3>
+  <form>
+    <input name="userName"
+          #userName [(ngModel)]="createdUser.name" (click)="createdUser.name = ''"> {{userName.value}}
+
+    <button (click)="createUser()" > Create new User</button>
+  </form>
 </div>

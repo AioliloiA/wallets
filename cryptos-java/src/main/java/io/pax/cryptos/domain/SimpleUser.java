@@ -11,6 +11,11 @@ public class SimpleUser implements User {
     int id;
     String name;
 
+
+    public SimpleUser(){
+
+    }
+
     public SimpleUser(int id, String name) {
         this.id = id;
         this.name = name;
@@ -35,6 +40,16 @@ public class SimpleUser implements User {
     public String toString() {
         return this.name;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+
 }
 
 

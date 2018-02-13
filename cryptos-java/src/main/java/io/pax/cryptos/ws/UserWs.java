@@ -1,14 +1,14 @@
 package io.pax.cryptos.ws;
 
 import io.pax.cryptos.dao.UserDao;
+import io.pax.cryptos.domain.FullUser;
 import io.pax.cryptos.domain.User;
+import io.pax.cryptos.domain.Wallet;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,8 +26,27 @@ public class UserWs {
 
     @GET
     @Path("{id}")
-    public User getUser(@PathParam("id") int userId) throws SQLException{
+    @Consumes(MediaType.APPLICATION_JSON)
+    public User getUser(@PathParam("id") int userId) throws SQLException {
 
         return new UserDao().findUserWithWallets(userId);
+    }
+
+    @POST
+
+    public User createUser(FullUser user) {
+
+        List<Wallet> wallets = new ArrayList<>();
+
+        try {
+            int id = new UserDao().createUser(user.getName());
+
+
+            return new FullUser(id, user.getName(), wallets);
+
+
+        } catch (SQLException e) {
+            throw new ServerErrorException("DTB error", 500);
+        }
     }
 }
