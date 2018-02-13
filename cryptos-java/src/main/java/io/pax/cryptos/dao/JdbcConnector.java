@@ -23,8 +23,8 @@ public class JdbcConnector {
     private DataSource createDatasSource() {
         Object dataSource;
         try {
-            InitialContext e = new InitialContext();
-            dataSource = (DataSource)e.lookup("java:/cryptos");
+            InitialContext context = new InitialContext();
+            dataSource = (DataSource)context.lookup("java:/cryptos");
         } catch (NamingException var4) {
             MysqlDataSource mysqlDataSource = new MysqlDataSource();
             mysqlDataSource.setUser("root");

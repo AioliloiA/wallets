@@ -1,4 +1,6 @@
-package io.pax.cryptos.domain;
+package io.pax.cryptos.domain.jdbc;
+
+import io.pax.cryptos.domain.Wallet;
 
 /**
  * Created by AELION on 06/02/2018.
@@ -22,7 +24,7 @@ public class SimpleWallet implements Wallet {
   }
 
   @Override
-  public User getUser(){
+  public SimpleUser getUser(){
     return null;
   }
 

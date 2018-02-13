@@ -1,4 +1,4 @@
-package io.pax.cryptos.domain;
+package io.pax.cryptos.domain.jdbc;
 
 /**
  * Created by AELION on 12/02/2018.
@@ -20,7 +20,7 @@ public class FullWallet extends SimpleWallet {
     }
 
     @Override
-    public User getUser(){
+    public SimpleUser getUser(){
         return user;
     }
 
