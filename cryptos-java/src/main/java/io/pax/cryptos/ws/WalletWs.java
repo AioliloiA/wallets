@@ -1,10 +1,11 @@
 package io.pax.cryptos.ws;
 
 import io.pax.cryptos.dao.WalletDao;
-import io.pax.cryptos.domain.jdbc.FullWallet;
-import io.pax.cryptos.domain.jdbc.SimpleUser;
 import io.pax.cryptos.domain.User;
 import io.pax.cryptos.domain.Wallet;
+import io.pax.cryptos.domain.jdbc.FullWallet;
+import io.pax.cryptos.domain.jdbc.SimpleUser;
+import io.pax.cryptos.domain.jpa.JpaWalletDao;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -25,7 +26,12 @@ public class WalletWs  {
     WalletDao dao = new WalletDao();
     return dao.listWallets();
   }
+  @GET
+  @Path("{id}")
+  public Wallet getWallet(@PathParam("id") int walletId){
+    return new JpaWalletDao().getWallet(walletId);
 
+  };
 
   @POST
   public Wallet createWallet(FullWallet wallet){

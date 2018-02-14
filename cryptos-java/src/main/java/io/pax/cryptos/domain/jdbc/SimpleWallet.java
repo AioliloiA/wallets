@@ -1,6 +1,9 @@
 package io.pax.cryptos.domain.jdbc;
 
+import io.pax.cryptos.domain.Line;
 import io.pax.cryptos.domain.Wallet;
+
+import java.util.List;
 
 /**
  * Created by AELION on 06/02/2018.
@@ -21,6 +24,11 @@ public class SimpleWallet implements Wallet {
   @Override
   public int getId() {
     return this.id;
+  }
+
+  @Override
+  public List<? extends Line> getLines() {
+    return null;
   }
 
   @Override

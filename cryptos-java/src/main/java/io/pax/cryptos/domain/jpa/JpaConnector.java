@@ -9,12 +9,12 @@ import javax.persistence.Persistence;
  */
 public class JpaConnector {
 
-    EntityManagerFactory factory;
+    static EntityManagerFactory factory;
 
 
     void connect(){
-        if (this.factory == null){
-            this.factory = Persistence.createEntityManagerFactory("cryptos");
+        if (factory == null){
+            factory = Persistence.createEntityManagerFactory("cryptos");
         }
     }
 
@@ -25,7 +25,7 @@ public class JpaConnector {
     }
 
     public void close(){
-        this.factory.close();
+        factory.close();
     }
 
     public static void main(String[] args) {

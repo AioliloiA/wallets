@@ -14,7 +14,7 @@ public class JpaUserDao {
 
     JpaConnector connector = new JpaConnector();
 
-   public User createUser (String name){
+   public JpaUser createUser (String name){
 
        EntityManager em = connector.createEntityManager();
        em.getTransaction().begin();
@@ -37,7 +37,7 @@ public class JpaUserDao {
        return user;
    }
 
-    public User find (int id){
+    public JpaUser find (int id){
        EntityManager em = connector.createEntityManager();
        em.getTransaction().begin();
 
@@ -48,7 +48,7 @@ public class JpaUserDao {
     }
 
 
-    public User findByName (String name){
+    public JpaUser findByName (String name){
         EntityManager em = connector.createEntityManager();
         em.getTransaction().begin();
         // JPQL
